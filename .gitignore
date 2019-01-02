@@ -1,0 +1,5 @@
+config
+http-cache/*
+http-cache
+cache
+cache/*
