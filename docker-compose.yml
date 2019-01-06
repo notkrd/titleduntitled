@@ -1,4 +1,4 @@
 version: '3.7'
 services:
-  balancethatload:
-    build: './balancethatload'
+  carrythatload:
+    build: './carrythatload'
