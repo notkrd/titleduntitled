@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="environ-data" data-generationurl="{{ url_for('a_generation') }}" data-starturl="{{ url_for('genetictext') }}">
+
+    <title>thefarawaysummerevenings, Genetically Wherever</title>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</head>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+<p><a href="https://ir.uiowa.edu/cgi/viewcontent.cgi?article=2847&context=iowareview">Whatever It Is, Wherever You Are - John Ashbery</a> <a href="http://kavid.xyz/semiprof">My Homepage</a></p>
+
+    <p><button id="update">One generation forwards </button> <button id="linger">Linger here </button> <label for="rate">Generation length (milliseconds)</label>
+  <input type="number" name="rate" id="rate" value="1125"> <button id="advance">Advance generations </button> </p>
+
+
+
+    <div id="textsurface"></div>
+
+{#<div id="text-surface">#}
+{#    {%  for individual in population %}#}
+{#        <p class="individual"> {{ individual }} </p>#}
+{#    {%  endfor %}#}
+{#</div>#}
+
+</body>
+</html>
