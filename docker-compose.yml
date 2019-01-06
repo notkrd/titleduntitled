@@ -4,3 +4,5 @@ services:
     build: './carrythatload'
     ports:
       - "80:80"
+    expose:
+      - "80"
