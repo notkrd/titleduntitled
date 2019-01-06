@@ -2,3 +2,5 @@ version: '3.7'
 services:
   carrythatload:
     build: './carrythatload'
+    ports:
+      - "80"
