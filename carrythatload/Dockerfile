@@ -1,2 +1,2 @@
 FROM nginx
-COPY static-html-directory /usr/share/nginx/html
+COPY hypertext_facade /usr/share/nginx/html
