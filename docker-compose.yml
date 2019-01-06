@@ -3,4 +3,4 @@ services:
   carrythatload:
     build: './carrythatload'
     ports:
-      - "80"
+      - "80:80"
