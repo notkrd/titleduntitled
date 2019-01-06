@@ -6,3 +6,7 @@ services:
       - "80:80"
     expose:
       - "80"
+  thefarawaysummerevenings:
+    build: './thefarawaysummerevenings'
+    ports:
+      - "5000:5000"
