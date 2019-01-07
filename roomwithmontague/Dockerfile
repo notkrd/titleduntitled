@@ -4,4 +4,4 @@ WORKDIR /app
 
 COPY . /app
 
-RUN sbt run
+CMD sbt run
