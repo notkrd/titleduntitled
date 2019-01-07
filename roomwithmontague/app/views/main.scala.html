@@ -1,0 +1,42 @@
+@*
+ * This template is called from the `index` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * two arguments, a `String` for the title of the page and an `Html`
+ * object to insert into the body of the page.
+ *@
+@(title: String)(content: Html)(implicit req: play.api.mvc.RequestHeader)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        @* Here's where we render the page title `String`. *@
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/wallpaper.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.ico")">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+                window.jQuery || document.write('<script src="@routes.Assets.versioned("javascripts/jquery-3.3.1.js")"><\/script>');
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
+        <script>
+            window._ || document.write('<script src="@routes.Assets.versioned("javascripts/lodash.min.js")"><\/script>');
+        </script>
+
+
+            <!-- Embedded Javascript router -->
+    @helper.javascriptRouter("jsRoutes")(
+        routes.javascript.Assertions.assert,
+        routes.javascript.Assertions.compose,
+        routes.javascript.LexiconController.getLexicon
+    )
+
+    <script type="text/javascript" src="@routes.HomeController.javascriptRoutes"></script>
+    </head>
+    <body>
+        @* And here's where we render the `Html` object containing
+         * the page content. *@
+        @content
+    </body>
+</html>
