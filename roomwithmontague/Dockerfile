@@ -4,6 +4,4 @@ WORKDIR /app
 
 COPY . /app
 
-RUN sbt build
-
 CMD ["sbt run"]
