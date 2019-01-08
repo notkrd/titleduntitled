@@ -4,8 +4,8 @@ services:
     image: jwilder/nginx-proxy
     #ports:
     #  - "80:80"
-    networks:
-      - reverse-proxy
+#    networks:
+#      - reverse-proxy
     expose:
       - "80"
     network_mode: host
@@ -15,8 +15,8 @@ services:
   
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
-    networks:
-      - reverse-proxy
+#    networks:
+#      - reverse-proxy
     #  - default
     expose:
       - "5000"
@@ -27,15 +27,15 @@ services:
 
   hypertextfacade:
     build: './hypertextfacade'
-    networks:
-      - reverse-proxy
+#    networks:
+#      - reverse-proxy
     environment: 
       - VIRTUAL_HOST=facade.titleduntitled.name
 
   roomwithmontague:
     build: './roomwithmontague'
-    networks:
-      - reverse-proxy
+#    networks:
+#      - reverse-proxy
     #  - default
     expose:
       - "9000"
@@ -49,7 +49,7 @@ services:
     labels:
       - "traefik.frontend.rule=Host:whoami.docker.localhost"
 
-networks:
-  reverse-proxy:
-    external:
-      name: reverse-proxy
+#networks:
+#  reverse-proxy:
+#    external:
+#      name: reverse-proxy
