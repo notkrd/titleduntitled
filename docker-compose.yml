@@ -2,17 +2,17 @@ version: '3.7'
 services:
   carrythatload:
     image: jwilder/nginx-proxy
-    ports:
-      - "80:80"
+    #ports:
+    #  - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     container_name: carrythatload
   
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
-    networks:
-      - web
-      - default
+    #networks:
+    #  - web
+    #  - default
     #expose:
     #  - "5000"
     environment:
@@ -22,9 +22,9 @@ services:
 
   roomwithmontague:
     build: './roomwithmontague'
-    networks:
-      - web
-      - default
+    #networks:
+    #  - web
+    #  - default
     #expose:
     #  - "9000"
     environment:
@@ -38,5 +38,5 @@ services:
       - "traefik.frontend.rule=Host:whoami.docker.localhost"
 
 networks:
-  web:
-    external: true
+  #web:
+  #  external: true
