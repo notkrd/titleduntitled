@@ -17,6 +17,7 @@ services:
 #    networks:
 #      - reverse-proxy
     #  - default
+    network_mode: host
     ports:
       - "5000:5000"
 #    environment:
@@ -28,6 +29,7 @@ services:
     build: './hypertextfacade'
 #    networks:
 #      - reverse-proxy
+    network_mode: host
     ports:
       - "80:80"
 #    environment: 
@@ -38,8 +40,9 @@ services:
 #    networks:
 #      - reverse-proxy
     #  - default
+    network_mode: host
     ports:
-      - "9000:80"
+      - "9000:9000"
 #    environment:
 #      - VIRTUAL_PORT=9000
 #      - VIRTUAL_HOST=rooms.titleduntitled.name
@@ -52,5 +55,4 @@ services:
 
 #networks:
 #  reverse-proxy:
-#    external:
-#      name: reverse-proxy
+#    external: true

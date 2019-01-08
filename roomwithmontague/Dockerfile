@@ -19,4 +19,4 @@ COPY . /room
 RUN sbt dist
 RUN unzip target/universal/roomwithmontague-1.0.zip
 
-CMD roomwithmontague-1.0/bin/roomwithmontague -Dhttp.port=80
+CMD roomwithmontague-1.0/bin/roomwithmontague
