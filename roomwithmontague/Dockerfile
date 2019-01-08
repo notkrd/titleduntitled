@@ -17,8 +17,7 @@ RUN \
   apt-get install sbt && \
   sbt sbtVersion
 
-RUN \
-  sbt dist \
-  unzip target/universal/roomwithmontague-$ROOM_VERSION.zip
+RUN sbt dist
+RUN unzip target/universal/roomwithmontague-$ROOM_VERSION.zip
 
 CMD roomwithmontague-${ROOM_VERSION}/bin/roomwithmontague
