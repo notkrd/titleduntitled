@@ -8,9 +8,27 @@ from nltk.util import ngrams
 from functools import reduce
 from flask import jsonify
 import math
-app = Flask(__name__)
 
-app.config["APPLICATION_ROOT"] = "/thefaraway/"
+#Taken from su27's stackexchange post https://stackoverflow.com/questions/18967441/add-a-prefix-to-all-flask-routes/36033627#36033627
+class PrefixMiddleware(object):
+
+    def __init__(self, app, prefix=''):
+        self.app = app
+        self.prefix = prefix
+
+    def __call__(self, environ, start_response):
+
+        if environ['PATH_INFO'].startswith(self.prefix):
+            environ['PATH_INFO'] = environ['PATH_INFO'][len(self.prefix):]
+            environ['SCRIPT_NAME'] = self.prefix
+            return self.app(environ, start_response)
+        else:
+            start_response('404', [('Content-Type', 'text/plain')])
+            return ["This url does not belong to the app.".encode()]
+
+
+app = Flask(__name__)
+app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix='/thefaraway')
 
 MAX_N = 5
 SEED_MAX_SIZE = 20
@@ -21,7 +39,6 @@ POP_SIZE = 50
 HINGE_P = .2
 JOIN_P = .08
 MIN_LENGTH = 10
-
 
 def read_text(txt_path=os.path.join(os.getcwd(), "texts", "WhateverItIsWhereverYouAre.txt")):
     with open(txt_path, 'r') as f:
