@@ -1,12 +1,12 @@
 version: '3.7'
 services:
-  nginx-proxy:
+  carrythatload:
     image: jwilder/nginx-proxy
     ports:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-  container_name: nginx-proxy
+    container_name: carrythatload
   
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
