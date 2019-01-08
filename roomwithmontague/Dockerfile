@@ -3,6 +3,10 @@ FROM openjdk:${OPENJDK_TAG}
 
 ARG SBT_VERSION=1.2.8
 
+WORKDIR /room
+
+COPY . /room
+
 # Install sbt
 RUN \
   curl -L -o sbt-$SBT_VERSION.deb https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb && \
