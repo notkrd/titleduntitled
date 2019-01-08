@@ -46,4 +46,4 @@ services:
 
 networks:
   web:
-external: true
+    external: true
