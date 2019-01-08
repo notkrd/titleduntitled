@@ -42,7 +42,7 @@ services:
       - "9000:80"
 #    environment:
 #      - VIRTUAL_PORT=9000
-      - VIRTUAL_HOST=rooms.titleduntitled.name
+#      - VIRTUAL_HOST=rooms.titleduntitled.name
     container_name: roomwithmontague
 
   whoami: #for testing
