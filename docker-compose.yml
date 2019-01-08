@@ -10,7 +10,11 @@ services:
     build: './thefarawaysummerevenings'
     ports:
       - "5000:5000"
+    expose:
+      - "5000"
   roomwithmontague:
     build: './roomwithmontague'
     ports:
       - "9000:9000"
+    expose:
+      - "9000"
