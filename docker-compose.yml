@@ -6,8 +6,8 @@ services:
     #  - "80:80"
 #    networks:
 #      - reverse-proxy
-    expose:
-      - "80"
+    ports:
+      - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     container_name: carrythatload
