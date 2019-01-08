@@ -4,14 +4,16 @@ services:
     image: jwilder/nginx-proxy
     #ports:
     #  - "80:80"
+    expose:
+      - "80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     container_name: carrythatload
   
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
-    #networks:
-    #  - web
+    networks:
+      - web
     #  - default
     #expose:
     #  - "5000"
@@ -22,8 +24,8 @@ services:
 
   roomwithmontague:
     build: './roomwithmontague'
-    #networks:
-    #  - web
+    networks:
+      - web
     #  - default
     #expose:
     #  - "9000"
@@ -37,6 +39,7 @@ services:
     labels:
       - "traefik.frontend.rule=Host:whoami.docker.localhost"
 
-#networks:
-  #web:
-  #  external: true
+networks:
+  reverse-proxy:
+    external:
+      name: reverse-proxy
