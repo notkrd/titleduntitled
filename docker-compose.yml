@@ -8,7 +8,6 @@ services:
 #      - reverse-proxy
     expose:
       - "80"
-    network_mode: host
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     container_name: carrythatload
@@ -18,10 +17,10 @@ services:
 #    networks:
 #      - reverse-proxy
     #  - default
-    expose:
-      - "5000"
+#    expose:
+#      - "5000"
     environment:
-      - VIRTUAL_PORT=5000
+#      - VIRTUAL_PORT=5000
       - VIRTUAL_HOST=thefaraway.titleduntitled.name
     container_name: thefarawaysummerevenings
 
@@ -37,10 +36,10 @@ services:
 #    networks:
 #      - reverse-proxy
     #  - default
-    expose:
-      - "9000"
+#    expose:
+#      - "9000"
     environment:
-      - VIRTUAL_PORT=9000
+#      - VIRTUAL_PORT=9000
       - VIRTUAL_HOST=rooms.titleduntitled.name
     container_name: roomwithmontague
 

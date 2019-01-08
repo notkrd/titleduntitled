@@ -21,4 +21,4 @@ COPY . /room
 
 #CMD roomwithmontague-1.0/bin/roomwithmontague
 
-CMD sbt "run 80"
+CMD sbt "run 80 ~"
