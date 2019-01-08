@@ -37,6 +37,6 @@ services:
     labels:
       - "traefik.frontend.rule=Host:whoami.docker.localhost"
 
-networks:
+#networks:
   #web:
   #  external: true
