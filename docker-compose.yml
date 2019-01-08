@@ -4,6 +4,8 @@ services:
     image: jwilder/nginx-proxy
     #ports:
     #  - "80:80"
+    networks:
+      - reverse-proxy
     expose:
       - "80"
     volumes:
@@ -13,7 +15,7 @@ services:
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
     networks:
-      - web
+      - reverse-proxy
     #  - default
     #expose:
     #  - "5000"
@@ -25,7 +27,7 @@ services:
   roomwithmontague:
     build: './roomwithmontague'
     networks:
-      - web
+      - reverse-proxy
     #  - default
     #expose:
     #  - "9000"
