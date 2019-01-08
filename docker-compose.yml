@@ -6,21 +6,46 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
+    networks:
+      - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - traefiking/traefik.toml:/trafik.toml
+      - traefiking/acme.json:/acme.json
+    container_name: traefiking
+  
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
-    ports:
-      - "5000:5000"
+    networks:
+      - web
+      - default
     expose:
       - "5000"
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:thefaraway.titleduntitled.name"
+      - "traefik.basic.port=5000"
+    container_name: thefarawaysummerevenings
+
   roomwithmontague:
     build: './roomwithmontague'
     ports:
       - "9000:9000"
     expose:
       - "9000"
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:thefaraway.titleduntitled.name"
+      - "traefik.basic.port=9000"
+    container_name: roomwithmontague
+
   whoami: #for testing
     image: containous/whoami
     labels:
       - "traefik.frontend.rule=Host:whoami.docker.localhost"
+
+networks:
+  web:
+    external: true
