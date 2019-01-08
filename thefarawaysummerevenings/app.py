@@ -10,6 +10,8 @@ from flask import jsonify
 import math
 app = Flask(__name__)
 
+app.config["APPLICATION_ROOT"] = "/thefaraway/"
+
 MAX_N = 5
 SEED_MAX_SIZE = 20
 MUTATION_CHANCE = 0.1
