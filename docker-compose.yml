@@ -10,8 +10,8 @@ services:
       - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - traefiking/traefik.toml:/trafik.toml
-      - traefiking/acme.json:/acme.json
+      - ${PWD}/traefiking/traefik.toml:/trafik.toml
+      - ${PWD}/traefiking/acme.json:/acme.json
     container_name: traefiking
   
   thefarawaysummerevenings:
