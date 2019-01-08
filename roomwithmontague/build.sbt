@@ -20,3 +20,6 @@ resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 
 //unmanagedResourceDirectories in Test +=  baseDirectory ( _ /"" + "target/web/public/test" )
+
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
