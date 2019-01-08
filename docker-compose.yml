@@ -30,8 +30,9 @@ services:
 
   roomwithmontague:
     build: './roomwithmontague'
-    ports:
-      - "9000:9000"
+    networks:
+      - web
+      - default
     expose:
       - "9000"
     labels:
