@@ -4,25 +4,25 @@
 # ~~~~
 
 # Home controller on Montague's room
-GET     /this                       controllers.HomeController.showThisRoom
+GET     /rooms/this                       controllers.HomeController.showThisRoom
 # Home controller on Montague's room
-GET     /that                       controllers.HomeController.showThatRoom
+GET     /rooms/that                       controllers.HomeController.showThatRoom
 # Home controller on my room
-GET     /                           controllers.HomeController.showThisRoom
+GET     /rooms/                           controllers.HomeController.showThisRoom
 # An example controller showing how to write asynchronous code
-GET     /message                    controllers.AsyncController.message
+GET     /rooms/message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file)
+GET     /rooms/assets/*file               controllers.Assets.versioned(path="/public", file)
 
 # Making assertions
-POST    /ajax/assert/:wname         controllers.Assertions.assert(wname: String)
+POST    /rooms/ajax/assert/:wname         controllers.Assertions.assert(wname: String)
 
-GET     /ajax/compose/:wname        controllers.Assertions.compose(wname: String)
+GET     /rooms/ajax/compose/:wname        controllers.Assertions.compose(wname: String)
 
 # Get a world's lexicon
 
-GET     /ajax/lexicon/:wname        controllers.LexiconController.getLexicon(wname: String)
+GET     /rooms/ajax/lexicon/:wname        controllers.LexiconController.getLexicon(wname: String)
 
 # Js routing please god
-GET     /javascriptRoutes           controllers.HomeController.javascriptRoutes
+GET     /rooms/javascriptRoutes           controllers.HomeController.javascriptRoutes
