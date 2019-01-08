@@ -17,20 +17,27 @@ services:
     networks:
       - reverse-proxy
     #  - default
-    #expose:
-    #  - "5000"
+    expose:
+      - "5000"
     environment:
       - VIRTUAL_PORT=5000
       - VIRTUAL_HOST=thefaraway.titleduntitled.name
     container_name: thefarawaysummerevenings
+
+  hypertextfacade:
+    build: './hypertextfacade'
+    networks:
+      - reverse-proxy
+    environment: 
+      - VIRTUAL_HOST=facade.titleduntitled.name
 
   roomwithmontague:
     build: './roomwithmontague'
     networks:
       - reverse-proxy
     #  - default
-    #expose:
-    #  - "9000"
+    expose:
+      - "9000"
     environment:
       - VIRTUAL_PORT=9000
       - VIRTUAL_HOST=rooms.titleduntitled.name
