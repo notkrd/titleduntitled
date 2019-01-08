@@ -8,6 +8,7 @@ services:
       - reverse-proxy
     expose:
       - "80"
+    network_mode: host
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     container_name: carrythatload
