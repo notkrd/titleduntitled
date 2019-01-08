@@ -1,31 +1,23 @@
 version: '3.7'
 services:
-  traefiking:
-    image: traefik
-    command: --api --docker
+  nginx-proxy:
+    image: jwilder/nginx-proxy
     ports:
       - "80:80"
-      - "8080:8080"
-    networks:
-      - web
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ${PWD}/traefiking/traefik.toml:/trafik.toml
-      - ${PWD}/traefiking/acme.json:/acme.json
-    container_name: traefiking
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  container_name: nginx-proxy
   
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
     networks:
       - web
       - default
-    expose:
-      - "5000"
-    labels:
-      - "traefik.docker.network=web"
-      - "traefik.enable=true"
-      - "traefik.basic.frontend.rule=Host:thefaraway.titleduntitled.name"
-      - "traefik.basic.port=5000"
+    #expose:
+    #  - "5000"
+    environment:
+      - VIRTUAL_PORT=5000
+      - VIRTUAL_HOST=thefaraway.titleduntitled.name
     container_name: thefarawaysummerevenings
 
   roomwithmontague:
@@ -33,13 +25,11 @@ services:
     networks:
       - web
       - default
-    expose:
-      - "9000"
-    labels:
-      - "traefik.docker.network=web"
-      - "traefik.enable=true"
-      - "traefik.basic.frontend.rule=Host:rooms.titleduntitled.name"
-      - "traefik.basic.port=9000"
+    #expose:
+    #  - "9000"
+    environment:
+      - VIRTUAL_PORT=9000
+      - VIRTUAL_HOST=rooms.titleduntitled.name
     container_name: roomwithmontague
 
   whoami: #for testing
