@@ -31,7 +31,7 @@ a.verboten {
 }
 
 #top{
-    background: grey url("/assets/images/plaster_wall_texture.jpg") fixed;
+    background: grey url("/rooms/assets/images/plaster_wall_texture.jpg") fixed;
     box-shadow:0 -4px 0 rgba(0, 0, 0, 0.1) inset;
     padding:0;
     position:relative;
