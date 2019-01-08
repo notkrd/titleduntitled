@@ -2,6 +2,7 @@ ARG OPENJDK_TAG=8u181
 FROM openjdk:${OPENJDK_TAG}
 
 ARG SBT_VERSION=1.2.8
+ARG ROOM_VERSION=1.0
 
 WORKDIR /room
 
@@ -16,4 +17,8 @@ RUN \
   apt-get install sbt && \
   sbt sbtVersion
 
-CMD sbt run
+RUN \
+  sbt dist \
+  unzip target/universal/roomwithmontague-$ROOM_VERSION.zip
+
+CMD roomwithmontague-${ROOM_VERSION}/bin/roomwithmontague
