@@ -12,8 +12,6 @@ services:
       - "5000:5000"
     expose:
       - "5000"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d
   roomwithmontague:
     build: './roomwithmontague'
     ports:
