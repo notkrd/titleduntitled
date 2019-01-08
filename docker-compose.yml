@@ -35,7 +35,7 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.basic.frontend.rule=Host:thefaraway.titleduntitled.name"
+      - "traefik.basic.frontend.rule=Host:rooms.titleduntitled.name"
       - "traefik.basic.port=9000"
     container_name: roomwithmontague
 
