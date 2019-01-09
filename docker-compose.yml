@@ -3,7 +3,6 @@ services:
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
     network_mode: host
-    restart: always
     ports:
       - "5000:5000"
     container_name: thefarawaysummerevenings
@@ -11,7 +10,6 @@ services:
   roomwithmontague:
     build: './roomwithmontague'
     network_mode: host
-    restart: always
     ports:
       - "9000:9000"
     container_name: roomwithmontague
