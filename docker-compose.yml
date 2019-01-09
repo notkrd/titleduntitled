@@ -32,8 +32,8 @@ services:
     restart: always
     network_mode: host
     environment:
-      MONGO_INDB_ROOT_USERNAME: $MONGOUSER
-      MONGO_INITDB_ROOT_PASSWORD: $MONGOPWD
+      - MONGO_INDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
 
   mongoose-express:
     image: mongo
@@ -42,5 +42,5 @@ services:
     ports:
       - 8081:8081
     environment:
-      MONGO_INDB_ROOT_USERNAME
-      MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
