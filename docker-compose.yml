@@ -3,19 +3,44 @@ services:
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
     network_mode: host
+    restart: always
     ports:
       - "5000:5000"
     container_name: thefarawaysummerevenings
 
-  hypertextfacade:
-    build: './hypertextfacade'
-    network_mode: host
-    ports:
-      - "80:80"
-
   roomwithmontague:
     build: './roomwithmontague'
     network_mode: host
+    restart: always
     ports:
       - "9000:9000"
     container_name: roomwithmontague
+
+  #Backendy things
+
+  carrythatload: #nginx reverse proxy
+    build: './carrythatload'
+    network_mode: host
+    restart: always
+    ports:
+      - "80:80"
+
+  #mongoDB for wikijs
+
+  mongoose: 
+    image: mongo
+    restart: always
+    network_mode: host
+    environment:
+      MONGO_INDB_ROOT_USERNAME: ${MONGOUSER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGOPWD}
+
+  mongoose-express:
+    image: mongo
+    restart: always
+    network_mode: host
+    ports:
+      - 8081:8081
+    environment:
+      MONGO_INDB_ROOT_USERNAME: ${MONGOUSER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGOPWD}
