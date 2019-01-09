@@ -33,6 +33,10 @@ services:
     environment:
       - MONGO_INDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_DATA_DIR=/mongoose/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./mongoose/db:/data/db
     container_name: mongoose
 
   mongooseexpress:
