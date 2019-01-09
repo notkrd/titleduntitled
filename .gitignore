@@ -3,3 +3,5 @@ http-cache/*
 http-cache
 cache
 cache/*
+.vscode
+.vscode/*
