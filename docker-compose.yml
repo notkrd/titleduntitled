@@ -30,8 +30,6 @@ services:
   mongoose: 
     image: mongo
     restart: always
-    ports:
-      - "27017:27017"
     environment:
       - MONGO_INDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
