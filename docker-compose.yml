@@ -34,9 +34,10 @@ services:
     environment:
       - MONGO_INDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
+    container_name: mongoose
 
-  mongoose-express:
-    image: mongo
+  mongooseexpress:
+    image: mongo-express
     restart: always
     network_mode: host
     ports:
@@ -44,3 +45,4 @@ services:
     environment:
       - MONGO_INDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
+    container_name: mongooseexpress
