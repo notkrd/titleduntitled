@@ -3,11 +3,15 @@ services:
   thefarawaysummerevenings:
     build: './thefarawaysummerevenings'
     restart: always
+    expose:
+      - 5000
     container_name: thefarawaysummerevenings
 
   roomwithmontague:
     build: './roomwithmontague'
     restart: on-failure
+    expose:
+      - 5000
     container_name: roomwithmontague
 
   #Backendy things
@@ -20,6 +24,7 @@ services:
     depends_on: 
       - roomwithmontague
       - thefarawaysummerevenings
+    container_name: carrythatload
 
   #mongoDB for wikijs
 
