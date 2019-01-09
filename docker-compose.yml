@@ -30,6 +30,9 @@ services:
   mongoose: 
     image: mongo
     restart: always
+    network_mode: host
+    ports:
+      - 27017:27017
     environment:
       - MONGO_INDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
@@ -42,9 +45,11 @@ services:
   mongooseexpress:
     image: mongo-express
     restart: always
+    network_mode: host
     ports:
       - 8081:8081
     environment:
       - MONGO_INDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
     container_name: mongooseexpress
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
