@@ -23,6 +23,7 @@ services:
       - 'MONGO_LOG_DIR=/dev/null'
     volumes:
       - ./data/mongo:/data/db
+    container_name: wikidb
 
   wikijs:
     image: 'requarks/wiki:latest'
@@ -36,6 +37,7 @@ services:
       WIKI_ADMIN_EMAIL: admin@example.com
     volumes:
       - ./wikijs/config.yml:/var/wiki/config.yml
+    container_name: wikijs
 
   #Backendy things
 
