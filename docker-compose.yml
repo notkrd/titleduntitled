@@ -14,30 +14,19 @@ services:
       - 5000
     container_name: roomwithmontague
 
-  wikidb:
-    image: mongo:3
-    expose:
-      - '27017'
-    command: '--smallfiles --bind_ip ::,0.0.0.0'
-    environment:
-      - 'MONGO_LOG_DIR=/dev/null'
-    volumes:
-      - ./data/mongo:/data/db
-    container_name: wikidb
-
-  wikijs:
-    image: 'requarks/wiki:latest'
-    links:
-      - wikidb
+  xwiki:
+    image: "xwiki:mysql-tomcat"
+    container_name: xwiki-mysql-tomcat-web
     depends_on:
-      - wikidb
+      - db
     expose:
-      - 80
+      - "8080"
     environment:
-      WIKI_ADMIN_EMAIL: admin@example.com
+      - DB_USER=xwiki
+      - DB_PASSWORD=xwiki
+      - DB_HOST=xwiki-mysql-db
     volumes:
-      - ./wikijs/config.yml:/var/wiki/config.yml
-    container_name: wikijs
+      - xwiki-data:/usr/local/xwiki
 
   #Backendy things
 
@@ -50,3 +39,22 @@ services:
       - roomwithmontague
       - thefarawaysummerevenings
     container_name: carrythatload
+      
+  db: #for xwiki
+    image: "mysql:5.7"
+    container_name: xwiki-mysql-db
+    volumes:
+      - ./xwiki.cnf:/etc/mysql/conf.d/xwiki.cnf
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=xwiki
+      - MYSQL_USER=xwiki
+      - MYSQL_PASSWORD=xwiki
+      - MYSQL_DATABASE=xwiki
+    expose:
+      - 3306
+      - 33060
+
+volumes:
+  mysql-data: {}
+  xwiki-data: {}
