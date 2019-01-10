@@ -16,6 +16,7 @@ services:
 
   xwiki:
     image: "xwiki:postgres-tomcat"
+    restart: always
     depends_on:
       - postdb
     expose:
@@ -39,25 +40,10 @@ services:
       - thefarawaysummerevenings
     container_name: carrythatload
 
-  #mongoDB for wikijs
-
-  mongoose: 
-    image: mongo
-    restart: always
-    ports:
-      - 27017:27017
-    environment:
-      - MONGO_INDB_ROOT_USERNAME
-      - MONGO_INITDB_ROOT_PASSWORD
-      - MONGO_DATA_DIR=/mongoose/db
-      - MONGO_LOG_DIR=/dev/null
-    volumes:
-      - ./mongoose/db:/data/db
-    container_name: mongoose
-
-  postdb:
+  postdb: #primarily for xwiki
     image: "postgres:9.5"
     container_name: postdb
+    restart: always
     volumes:
       - postgres-data:/var/lib/postgresql/data
     expose:
@@ -65,7 +51,7 @@ services:
     environment:
       - POSTGRES_ROOT_PASSWORD
       - POSTGRES_USER
-      - POSTGRES_DB=xwiki
+      - POSTGRES_DB=postdb
       - POSTGRES_INITDB_ARGS="--encoding=UTF8"
 
 volumes:
