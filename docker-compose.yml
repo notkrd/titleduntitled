@@ -24,7 +24,7 @@ services:
     environment:
       - DB_USER=xwiki
       - DB_PASSWORD=xwiki
-      - DB_HOST=xwiki-postgres-db
+      - DB_HOST=postdb
     volumes:
       - xwiki-data:/usr/local/xwiki
     container_name: xwiki
