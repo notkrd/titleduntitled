@@ -20,7 +20,7 @@ services:
     depends_on:
       - db
     expose:
-      - "8080"
+      - 8080
     environment:
       - DB_USER=xwiki
       - DB_PASSWORD=xwiki
