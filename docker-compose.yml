@@ -52,7 +52,7 @@ services:
     environment:
       - POSTGRES_ROOT_PASSWORD
       - POSTGRES_USER
-      - POSTGRES_DB=postdb
+      - POSTGRES_DB=xwiki
       - POSTGRES_INITDB_ARGS="--encoding=UTF8"
 
 volumes:
