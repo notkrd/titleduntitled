@@ -16,7 +16,7 @@ services:
 
   xwiki:
     image: "xwiki:mysql-tomcat"
-    container_name: xwiki-mysql-tomcat-web
+    container_name: xwiki
     depends_on:
       - db
     expose:
