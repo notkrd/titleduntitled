@@ -14,20 +14,19 @@ services:
       - 5000
     container_name: roomwithmontague
 
-  xwiki:
-    image: "xwiki:postgres-tomcat"
+  mediawiki:
+    image: mediawiki
     restart: always
-    depends_on:
-      - postdb
     expose:
       - 8080
-    environment:
-      - DB_USER=xwiki
-      - DB_PASSWORD=xwiki
-      - DB_HOST=postdb
+    links:
+      - database
     volumes:
-      - xwiki-data:/usr/local/xwiki
-    container_name: xwiki
+      - /var/www/html/images
+      # After initial setup, download LocalSettings.php to the same directory as
+      # this yaml and uncomment the following line and use compose to restart
+      # the mediawiki service
+      # - ./LocalSettings.php:/var/www/html/LocalSettings.php
 
   #Backendy things
 
@@ -41,22 +40,14 @@ services:
       - thefarawaysummerevenings
     container_name: carrythatload
 
-  postdb: #primarily for xwiki
-    image: "postgres:9.5"
-    container_name: postdb
+  database:
+    image: mariadb
     restart: always
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    expose:
-      - 5432
     environment:
-      - POSTGRES_ROOT_PASSWORD=xwiki
-      - POSTGRES_PASSWORD=xwiki
-      - POSTGRES_USER=xwiki
-      - POSTGRES_DB=xwiki
-      - POSTGRES_INITDB_ARGS="--encoding=UTF8"
+      # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
+      MYSQL_DATABASE: my_wiki
+      MYSQL_USER: wikiuser
+      MYSQL_PASSWORD: example
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
 
-volumes:
-  postgres-data: {}
-  xwiki-data: {}
     
