@@ -14,6 +14,19 @@ services:
       - 5000
     container_name: roomwithmontague
 
+  xwiki:
+    image: "xwiki:postgres-tomcat"
+    depends_on:
+      - postdb
+    expose:
+      - "8080:8080"
+    environment: 
+      - DB_USER
+      - DB_PASSWORD
+      - DB_HOST=postdb
+    volumes:
+      - xwiki-data:/usr/local/xwiki
+
   #Backendy things
 
   carrythatload: #nginx reverse proxy
@@ -41,3 +54,22 @@ services:
     volumes:
       - ./mongoose/db:/data/db
     container_name: mongoose
+
+  postdb:
+    image: "postgres:9.5"
+    container_name: postdb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_ROOT_PASSWORD
+      - POSTGRES_ROOT_PASSWORD
+      - POSTGRES_USER
+      - POSTGRES_DB=xwiki
+      - POSTGRES_INITDB_ARGS="--encoding=UTF8"
+
+volumes:
+  postgres-data: {}
+  xwiki-data: {}
+    
