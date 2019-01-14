@@ -35,9 +35,6 @@ services:
     restart: always
     ports:
       - "80:80"
-    depends_on: 
-      - roomwithmontague
-      - thefarawaysummerevenings
     container_name: carrythatload
       
   db: #for xwiki
