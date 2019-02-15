@@ -37,15 +37,18 @@ services:
       - "80:80"
       - "443:443"
     container_name: nginx
-
-
-  certbot:
-    image: certbot/certbot
-    restart: always
-    container_name: certbot
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
+
+
+  # certbot:
+  #   image: certbot/certbot
+  #   restart: always
+  #   container_name: certbot
+  #   volumes:
+  #     - ./data/certbot/conf:/etc/letsencrypt
+  #     - ./data/certbot/www:/var/www/certbot
       
   db: #for xwiki
     image: "mysql:5.7"
