@@ -31,7 +31,7 @@ services:
   #Backendy things
 
   nginx: #nginx reverse proxy
-    build: './carrythatload'
+    image: 'nginx:'
     restart: always
     ports:
       - "80:80"
@@ -39,6 +39,8 @@ services:
     container_name: nginx
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./carrythatload/hypertext_facade:/usr/share/nginx/html
 
 
   # certbot:
