@@ -31,7 +31,7 @@ services:
   #Backendy things
 
   nginx: #nginx reverse proxy
-    image: 'nginx:'
+    image: nginx
     restart: always
     ports:
       - "80:80"
