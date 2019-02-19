@@ -39,7 +39,7 @@ services:
     container_name: nginx
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
-      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./carrythatload/nginx.conf:/etc/nginx/conf.d/nginx.conf
       - ./carrythatload/hypertext_facade:/usr/share/nginx/html
 
 
