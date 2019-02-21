@@ -10,6 +10,9 @@ services:
   roomwithmontague:
     build: './roomwithmontague'
     restart: on-failure
+    expose:
+      - 9000
+      - 5000
     container_name: roomwithmontague
 
 
@@ -17,6 +20,9 @@ services:
   homofauxin:
     build: './homofauxin'
     restart: on-failure
+    expose:
+      - 9000
+      - 5000
     container_name: homofauxin
 
   xwiki:
