@@ -10,9 +10,14 @@ services:
   roomwithmontague:
     build: './roomwithmontague'
     restart: on-failure
-    expose:
-      - 5000
     container_name: roomwithmontague
+
+
+
+  homofauxin:
+    build: './homofauxin'
+    restart: on-failure
+    container_name: homofauxin
 
   xwiki:
     image: "xwiki:mysql-tomcat"
