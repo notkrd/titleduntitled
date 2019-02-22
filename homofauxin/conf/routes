@@ -4,5 +4,5 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /homofauxin/:start_phr                 controllers.HomoFauxController.getHomoFauxIn(start_phr: String)
+GET     /homofauxin/?:start_phr                controllers.HomoFauxController.getHomoFauxIn(start_phr: String)
 
