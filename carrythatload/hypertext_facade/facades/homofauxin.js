@@ -4,8 +4,7 @@ $(function() {
 
     function homofauxnighis() {
         $.getJSON({
-            url: "https://titleduntitled.name/homofauxin/",
-            data: homofauxin_source.val(),
+            url: "https://titleduntitled.name/homofauxin/" + escape(homofauxin_source.val()),
             success: function(x) { div_out.append(x); },
             dataType: "String",
             contentType: "String"
