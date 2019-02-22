@@ -5,7 +5,7 @@ $(function() {
     function homofauxnighis() {
         $.get({
             url: "https://titleduntitled.name/homofauxin/" + escape(homofauxin_source.val()),
-            success: function(x) { div_out.append(x); }
+            success: function(x) { div_out.append("<p>" + x + "<\p>"); }
         });
     }
 
