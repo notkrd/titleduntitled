@@ -3,7 +3,7 @@ $(function() {
     const div_out = $("#out")
 
     function homofauxnighis() {
-        $.getJSON({
+        $.get({
             url: "https://titleduntitled.name/homofauxin/" + escape(homofauxin_source.val()),
             success: function(x) { div_out.append(x); },
             dataType: "String",
