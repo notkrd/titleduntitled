@@ -15,7 +15,6 @@ services:
       - 5000
     container_name: roomwithmontague
 
-
   homofauxin:
     build: './homofauxin'
     restart: on-failure
@@ -37,6 +36,17 @@ services:
       - DB_HOST=xwiki-mysql-db
     volumes:
       - xwiki-data:/usr/local/xwiki
+
+  rerereading:
+    image: "wordpress"
+    restart: always
+    expose:
+      - 80
+    environment:
+      WORDPRESS_DB_HOST: wordpdb
+      WORDPRESS_DB_USER: wordpuser
+      WORDPRESS_DB_PASSWORD: wordppass
+      WORDPRESS_DB_NAME: wordpdb
 
   #Backendy things
 
@@ -77,6 +87,23 @@ services:
       - 3306
       - 33060
 
+  wordpdb: #for xwiki
+    image: "mysql:5.7"
+    restart: always
+    container_name: wordp-mysql-db
+    volumes:
+      - wordp-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wordpdb
+      MYSQL_USER: wordpuser
+      MYSQL_PASSWORD: wordppass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    expose:
+      - 3306
+      - 33060
+
+
 volumes:
   mysql-data: {}
   xwiki-data: {}
+  wordp-mysql-data: {}
