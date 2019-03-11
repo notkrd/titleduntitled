@@ -50,6 +50,16 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
       - ./carrythatload/nginx.conf:/etc/nginx/conf.d/nginx.conf
       - ./carrythatload/hypertext_facade:/usr/share/nginx/html
+  
+  rerereading:
+    image: ghost:2
+    container_name: rerereading
+    restart: always
+    expose:
+      - 2368
+    environment:
+      # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
+      - url=https://titleduntitled.name/rerereading/
 
 
   # certbot:
@@ -59,7 +69,7 @@ services:
   #   volumes:
   #     - ./data/certbot/conf:/etc/letsencrypt
   #     - ./data/certbot/www:/var/www/certbot
-      
+  
   db: #for xwiki
     image: "mysql:5.7"
     restart: always
@@ -76,8 +86,6 @@ services:
       - 3306
       - 33060
 
-
 volumes:
   mysql-data: {}
   xwiki-data: {}
-  wordp-mysql-data: {}
