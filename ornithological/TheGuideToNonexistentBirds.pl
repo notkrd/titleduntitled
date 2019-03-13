@@ -2229,10 +2229,7 @@ lots_ofBirdWords(N,THE_TEXT):-
 	writef(THE_TEXT).
 
 guideToNonexistentBirds(BIRD_WORDS):-
-	lots_ofBirdWords(7,BIRD_WORDS),
-	open('GuideToNonexistentBirds.txt',write,THE_BOOK),
-	write(THE_BOOK,BIRD_WORDS),
-	close(THE_BOOK).
+	lots_ofBirdWords(7,BIRD_WORDS).
 
 % Freebird
 % LYNRYD SKYNYRD
