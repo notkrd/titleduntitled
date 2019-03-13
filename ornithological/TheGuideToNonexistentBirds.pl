@@ -114,6 +114,18 @@ capitalize_first(STR,STR_START_CAPITALIZED):-
 	NEW_CHARS = [CH|R],
 	string_chars(STR_START_CAPITALIZED,NEW_CHARS).
 
+server :-
+    server(8080).
+server(Port) :-
+    http_server(http_dispatch, [port(Port)]).
+
+:- http_handler('/ornitholoical/', say_birds, []).
+:- http_handler('/ornitholoical', say_birds, []).
+:- http_handler('/OrnithologicalLogic.pdf', http_reply_file('OrnithologicalLogic.pdf', []), []).
+
+run :-
+    server,
+
 /*
  * THIRTEEN WAYS OF LOOKING AT A BLACKBIRD
  * Wallace Stevens
