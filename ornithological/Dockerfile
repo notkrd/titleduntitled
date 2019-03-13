@@ -1,3 +1,3 @@
 FROM swipl
 COPY . /app
-CMD ["swipl", "/app/TheGuideToNonexistentBirds.pl", "--user=daemon"]
+CMD ["swipl", "/app/TheGuideToNonexistentBirds.pl", "--user=www", "--port=8080", "--pidfile=/var/run/http.pid", "--debut='http(request)'", "--syslog=http"]
