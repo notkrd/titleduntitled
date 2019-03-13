@@ -25,7 +25,7 @@ services:
 
   ornithological:
     build: './ornithological'
-    restart: on-failure
+    restart: always
     expose:
       - 8080
     container_name: ornithological
