@@ -84,8 +84,6 @@
 :- use_module(library(http/http_error)).
 :- use_module(library(http/html_write)).
 
-:- initialization http_daemon.
-
 % NOTE: We cannot yet guarantee that any birds described in this guide
 % do not, in fact, exist. We deeply and sincerely apologize for any
 % inconvenience this causes and, pending venture capitalist funding,
