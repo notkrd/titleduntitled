@@ -2226,7 +2226,6 @@ lots_ofBirdWords(N,THE_TEXT):-
 		THE_WORDS],ALL_WORDS),
 	strs_flatten(ALL_WORDS,THE_TEXT),
 % Stabs the darkness" - BASHO (trans. unknown)
-	writef(THE_TEXT).
 
 guideToNonexistentBirds(BIRD_WORDS):-
 	lots_ofBirdWords(7,BIRD_WORDS).
