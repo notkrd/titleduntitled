@@ -121,7 +121,6 @@ server(Port) :-
 
 :- http_handler('/ornithological/', say_birds, []).
 :- http_handler('/ornithological', say_birds, []).
-:- http_handler('/ornithological/OrnithologicalLogic.pdf', http_reply_file('./OrnithologicalLogic.pdf', []), []).
 
 run :-
     server,
@@ -2269,4 +2268,4 @@ say_birds(_Request) :-
 	    [title('The Guide to Nonexistent Birds: an Ornithological Logic')],
 	    [
 	    pre(style="white-space: pre-wrap; width:45%; height:100%; float: right", BIRD_WORDS),
-	    iframe([src='OrnithologicalLogic.pdf', style='width:50%; height:95%; float: left; margin: 4px 10px 0px 0px; position: fixed'],[])]).
+	    iframe([src='https://titleduntitled.name/facades/OrnithologicalLogic.pdf', style='width:50%; height:95%; float: left; margin: 4px 10px 0px 0px; position: fixed'],[])]).
