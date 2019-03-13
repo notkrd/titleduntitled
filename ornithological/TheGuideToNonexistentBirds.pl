@@ -78,6 +78,14 @@
  *
  */
 
+:- use_module(library(http/http_unix_daemon)).
+:- use_module(library(http/thread_httpd)).
+:- use_module(library(http/http_dispatch)).
+:- use_module(library(http/http_error)).
+:- use_module(library(http/html_write)).
+
+:- initialization http_daemon.
+
 % NOTE: We cannot yet guarantee that any birds described in this guide
 % do not, in fact, exist. We deeply and sincerely apologize for any
 % inconvenience this causes and, pending venture capitalist funding,
@@ -2246,3 +2254,11 @@ guideToNonexistentBirds(BIRD_WORDS):-
 %
 % Lord, I can't change.
 % Won't you fly high, free bird, yeah?
+
+say_birds(_Request) :-
+    guideToNonexistentBirds(BIRD_WORDS),
+    reply_html_page(
+	    [title('The Guide to Nonexistent Birds: an Ornithological Logic')],
+	    [
+	    pre(style="white-space: pre-wrap; width:45%; height:100%; float: right", BIRD_WORDS),
+	    iframe([src='OrnithologicalLogic.pdf', style='width:50%; height:95%; float: left; margin: 4px 10px 0px 0px; position: fixed'],[])]).

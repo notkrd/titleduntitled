@@ -23,6 +23,14 @@ services:
       - 5000
     container_name: homofauxin
 
+  ornithological:
+    build: './ornithological'
+    restart: on-failure
+    expose:
+      - 8080
+    container_name: ornithological
+
+
   xwiki:
     image: "xwiki:mysql-tomcat"
     container_name: xwiki
