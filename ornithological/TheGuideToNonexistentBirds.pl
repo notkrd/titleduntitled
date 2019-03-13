@@ -121,7 +121,7 @@ server(Port) :-
 
 :- http_handler('/ornithological/', say_birds, []).
 :- http_handler('/ornithological', say_birds, []).
-:- http_handler('/ornithological/OrnithologicalLogic.pdf', http_reply_file('OrnithologicalLogic.pdf', []), []).
+:- http_handler('/ornithological/OrnithologicalLogic.pdf', http_reply_file('./OrnithologicalLogic.pdf', []), []).
 
 run :-
     server,
