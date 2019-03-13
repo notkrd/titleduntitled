@@ -1,3 +1,3 @@
 FROM swipl
 COPY . /app
-CMD ["swipl", "/app/TheGuideToNonexistentBirds.pl"]
+CMD ["swipl", "/app/TheGuideToNonexistentBirds.pl", "--user=daemon"]
