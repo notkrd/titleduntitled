@@ -68,6 +68,8 @@ services:
     environment:
       # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
       - url=https://titleduntitled.name/rerereading/
+    volumes:
+      - ghost-content:/content/data/
 
 
   # certbot:
@@ -97,3 +99,4 @@ services:
 volumes:
   mysql-data: {}
   xwiki-data: {}
+  ghost-content: {}
