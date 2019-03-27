@@ -114,6 +114,9 @@ def crossover(l, r):
         hinge = randint(0, math.ceil((len(l) + len(r))/2))
         return l[:hinge] + r[hinge:]
 
+def mutate_with_weight(x):
+    y = mutate(x)
+    return [y, n_sim(y)]
 
 def update(pop):
     pop_weights = weights(pop)
@@ -122,13 +125,11 @@ def update(pop):
     new_pop = []
     for i in range(POP_SIZE):
         new_pop.append(crossover(sample_l[i], sample_r[i]))
-    return list(map(lambda x: mutate(x), new_pop))
+    return list(map(lambda x: mutate_with_weight(x), new_pop))
 
 
 @app.route('/start/')
 def genetictext():
-
-
 
     def sim_fit(t):
         return n_sim(t, ngs)
@@ -146,9 +147,8 @@ def genetictext():
 
 @app.route('/update/', methods=['POST'])
 def a_generation():
-    # new_pop = mutate(ngs, request.get_json())
     dat = request.get_json()
-    new_pop = update(dat['population'])
+    new_pop = update(dat['population'][0])
     return jsonify(new_pop)
 
 
