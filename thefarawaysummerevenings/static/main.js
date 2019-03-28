@@ -8,16 +8,19 @@ $(function() {
     console.log("hi");
     let population = null;
 
-    function disp_individual(x) {
-        return "<p class='individual'>" +  x.join(" ") + "<p class='individual'>";
+    function disp_individual(x, i) {
+        return "<p class='individual' id='thing"+i+"'>" +  x[0].join(" ") + "<p class='individual'>";
     }
 
     function show_population(pop) {
         text_surface.html("");
         population = pop;
+        i=0;
         pop.forEach(
             function (x) {
-                text_surface.append(disp_individual(x))
+                i += 1;
+                text_surface.append(disp_individual(x, i));
+                $('#thing'+i).css("opacity", Math.min(1, 4*x[1]))
             }
         );
     }

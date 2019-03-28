@@ -118,7 +118,8 @@ def mutate_with_weight(x):
     y = mutate(x)
     return [y, n_sim(y)]
 
-def update(pop):
+def update(weighted_pop):
+    pop = [wp[0] for wp in weighted_pop]
     pop_weights = weights(pop)
     sample_l = random.choices(pop, pop_weights, k=POP_SIZE)
     sample_r = random.choices(pop, pop_weights, k=POP_SIZE)
@@ -137,8 +138,7 @@ def genetictext():
     def text_seed(max_len=SEED_MAX_SIZE):
         n = randint(MIN_LENGTH, SEED_MAX_SIZE)
         s = reduce(lambda a, b: a + [choice(ngs[1])], range(n + 1), [])
-        return s
-
+        return [s, n_sim(s)]
 
     pop = list(map(lambda x: text_seed(), range(POP_SIZE)))
 
@@ -148,7 +148,7 @@ def genetictext():
 @app.route('/update/', methods=['POST'])
 def a_generation():
     dat = request.get_json()
-    new_pop = update(dat['population'][0])
+    new_pop = update(dat['population'])
     return jsonify(new_pop)
 
 
