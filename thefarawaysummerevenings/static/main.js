@@ -5,7 +5,10 @@ $(function() {
     const text_surface = $('#textsurface');
     const update_button = $('#update');
     const input_rate = $('#rate');
+    const params_form = $('#params');
+
     console.log("hi");
+
     let population = null;
 
     function disp_individual(x, i) {
@@ -26,21 +29,35 @@ $(function() {
     }
 
     function update_population() {
-        $.post({
-            url: environData.generationurl,
-            data: JSON.stringify({'population': population}),
-            success: function (x) { show_population(x); },
-            dataType: "json",
-            contentType: 'application/json'});
+        if(params_form[0].checkValidity()) {
+            $.post({
+                url: environData.generationurl,
+                data: JSON.stringify({'mutp': $("#mutp").val(), 'addp': $("#addp").val(), 'losep': $("#losep").val(), 'population': population}),
+                success: function (x) { show_population(x); },
+                dataType: "json",
+                contentType: 'application/json'});
+        }
+    }
+
+    function change_params() {
+        update_population();
+        return false;
     }
 
     $.get(environData.starturl, function (data) { show_population(data) } );
 
     let evolutionary_process = window.setInterval(update_population, input_rate.val());
 
+    params_form.submit(function(event) {
+        window.clearInterval(evolutionary_process); 
+        evolutionary_process = window.setInterval(update_population, input_rate.val()); 
+        change_params();
+    });
+
     update_button.click(update_population);
-    $('#advance').click(function() { window.clearInterval(evolutionary_process); evolutionary_process = window.setInterval(update_population, input_rate.val()); });
-    $('#linger').click(function() { window.clearInterval(evolutionary_process) });
+    // $('#advance').click(function() { window.clearInterval(evolutionary_process); evolutionary_process = window.setInterval(update_population, input_rate.val()); });
+    
+    $('#linger').click(function(event) { window.clearInterval(evolutionary_process); });
 
 
 });

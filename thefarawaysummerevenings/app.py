@@ -32,13 +32,14 @@ app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix='/thefaraway')
 
 MAX_N = 5
 SEED_MAX_SIZE = 20
-MUTATION_CHANCE = 0.1
+MUTATION_CHANCE = 0.05
 ADD_CHANCE = 0.03
 LOSE_CHANCE = 0.03
 POP_SIZE = 50
 HINGE_P = .2
 JOIN_P = .08
 MIN_LENGTH = 10
+MAX_LENGTH = 20
 
 def read_text(txt_path=os.path.join(os.getcwd(), "texts", "WhateverItIsWhereverYouAre.txt")):
     with open(txt_path, 'r') as f:
@@ -82,43 +83,38 @@ def display_pop(pop):
     return "<br>".join(map(lambda l: " ".join(l), pop))
 
 
-def mutate(t):
+def mutate(t, mut_p = MUTATION_CHANCE, add_p = ADD_CHANCE, lose_p = LOSE_CHANCE, min_l = MIN_LENGTH, max_l = MAX_LENGTH):
     new = []
     words = ngs[1]
     for i, w in enumerate(t):
         r = random.random()
-        if r <= MUTATION_CHANCE:
+        if r <= mut_p:
             new.append(choice(words))
-        elif r <= MUTATION_CHANCE + ADD_CHANCE:
+        elif r <= mut_p + add_p:
             new.append(w)
             new.append(choice(words))
-        elif r <= MUTATION_CHANCE + ADD_CHANCE + LOSE_CHANCE:
+        elif r <= mut_p + add_p + lose_p:
             pass
         else:
             new.append(w)
-    if len(new) < MIN_LENGTH:
-        for i in range(MIN_LENGTH - len(new)):
+    if len(new) < min_l:
+        for i in range(min_l - len(new)):
             new.append(choice(words))
+    elif len(new) > max_l:
+        new = new[:max_l]
     return new
 
 
 def crossover(l, r):
-    rand = random.random()
-    if rand <= HINGE_P:
-        hingel = randint(0, len(l))
-        hinger = randint(0, len(r))
-        return l[:hingel] + r[hinger:]
-    # elif rand <= HINGE_P + JOIN_P:
-    #     return l + r
-    else:
-        hinge = randint(0, math.ceil((len(l) + len(r))/2))
-        return l[:hinge] + r[hinge:]
+    hingel = randint(0, len(l))
+    hinger = randint(0, len(r))
+    return l[:hingel] + r[hinger:]
 
-def mutate_with_weight(x):
-    y = mutate(x)
+def mutate_with_weight(x, mutp=MUTATION_CHANCE, addp=ADD_CHANCE, losep=LOSE_CHANCE):
+    y = mutate(x, mut_p=mutp, add_p=addp, lose_p=losep)
     return [y, n_sim(y)]
 
-def update(weighted_pop):
+def update(weighted_pop, mutp=MUTATION_CHANCE, addp=ADD_CHANCE, losep=LOSE_CHANCE):
     pop = [wp[0] for wp in weighted_pop]
     pop_weights = weights(pop)
     sample_l = random.choices(pop, pop_weights, k=POP_SIZE)
@@ -126,12 +122,11 @@ def update(weighted_pop):
     new_pop = []
     for i in range(POP_SIZE):
         new_pop.append(crossover(sample_l[i], sample_r[i]))
-    return list(map(lambda x: mutate_with_weight(x), new_pop))
+    return list(map(lambda x: mutate_with_weight(x, mutp, addp, losep), new_pop))
 
 
 @app.route('/start/')
 def genetictext():
-
     def sim_fit(t):
         return n_sim(t, ngs)
 
@@ -148,7 +143,7 @@ def genetictext():
 @app.route('/update/', methods=['POST'])
 def a_generation():
     dat = request.get_json()
-    new_pop = update(dat['population'])
+    new_pop = update(dat['population'], mutp=float(dat["mutp"]), addp=float(dat["addp"]), losep=float(dat["losep"]))
     return jsonify(new_pop)
 
 

@@ -13,14 +13,21 @@
 
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 
-<p><a href="https://ir.uiowa.edu/cgi/viewcontent.cgi?article=2847&context=iowareview">Whatever It Is, Wherever You Are - John Ashbery</a> <a href="http://kavid.xyz/semiprof">My Homepage</a></p>
+<p><a href=".">RESTART</a> - <a href="https://ir.uiowa.edu/cgi/viewcontent.cgi?article=2847&context=iowareview">Whatever It Is, Wherever You Are - John Ashbery</a> - <a href="http://titleduntitled.name/">Titled, "Untitled"</a></p>
+<form id="params" action="javascript:void(0)"> 
+  <label for="rate">Generation length (>99): </label><input type="number" name="rate" id="rate" style="width: 5em" value="1200" step="100" min="100" required> 
+  <label for="rate">% mutation (0.0-1.0): </label><input type="number" name="mutp" id="mutp" style="width: 5em" value="0.05" step="0.01" min="0" max="1" required> 
+  <label for="rate">% insertion (0.0-1.0): </label><input type="number" name="addp" id="addp" style="width: 5em" value="0.03" step="0.01" min="0" max="1" required> 
+  <label for="rate">% deletion (0.0-1.0): </label><input type="number" name="losep" id="losep" style="width: 5em" value="0.03" step="0.01" min="0" max="1" required>
+  
+  <br>
 
-    <p><button id="update">One generation forwards </button> <button id="linger">Linger here </button> <label for="rate">Generation length (milliseconds)</label>
-  <input type="number" name="rate" id="rate" value="1125"> <button id="advance">Advance generations </button> </p>
+  <button id="linger" type="button">Linger here </button> 
+  <button id="update" type="button">One generation forwards </button> 
+  <input type="submit" id="advance" value="Advance generations"> 
+</form>
 
-
-
-    <div id="textsurface"></div>
+<div id="textsurface"></div>
 
 </body>
 </html>
