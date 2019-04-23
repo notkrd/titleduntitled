@@ -44,7 +44,7 @@
  *-- to be a person to write about it; but I acknowledge I was writing it
  *-- already, so if I intend to keeping using this essay: more, using
  *-- this essay as the messy incipience of a certain intellectual project
- *-- (mine), a portfolio piece.
+ *-- (mine), a portfolio piece. That silence cannot be reinscribed.
  *
  * BIRD
  * Pablo Neruda
