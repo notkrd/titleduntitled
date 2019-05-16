@@ -30,6 +30,13 @@ services:
       - 8080
     container_name: ornithological
 
+  prattle:
+    build: './prattle'
+    restart: on-failure
+    expose:
+      - 9090
+    container_name: prattle
+
 
   xwiki:
     image: "xwiki:mysql-tomcat"
