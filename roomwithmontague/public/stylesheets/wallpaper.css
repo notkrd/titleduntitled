@@ -13,6 +13,11 @@ a.verboten {
     color: red;
 }
 
+.green-bg {
+    color: green;
+    font-weight: bold;
+}
+
 .flex-container {
     display: flex;
     flex-direction: row;
