@@ -77,6 +77,8 @@ if (opts.sslkey || opts.sslcert) {
   }
 }
 
+var userids = new Set();
+
 const userPath = opts.path;
 const server = PeerServer(opts, server => {
   const host = server.address().address;
@@ -90,8 +92,10 @@ const server = PeerServer(opts, server => {
 
 server.on('connection', client => {
   console.log(`Client connected: ${client.getId()}`);
+  userids.add(client.getId());
 });
 
 server.on('disconnect', client => {
   console.log(`Client disconnected: ${client.getId()}`);
+  userids.remove(client.getId());
 });
