@@ -10,14 +10,13 @@ services:
   roomwithmontague:
     build: './roomwithmontague'
     restart: always
-    user: aroom
     expose:
       - 9000
       - 5000
     container_name: roomwithmontague
     volumes:
-      - room-ivy-cache:/home/aroom/.ivy2
-      - room-sbt-cache:/home/aroom/.sbt
+      - room-ivy-cache:/root/.ivy2
+      - room-sbt-cache:/root/.sbt
 
   # homofauxin:
   #   build: './homofauxin'
