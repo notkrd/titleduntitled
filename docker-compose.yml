@@ -110,3 +110,5 @@ volumes:
   mysql-data: {}
   xwiki-data: {}
   ghost-content: {}
+  room-ivy-cache: {}
+  room-sbt-cache: {}
