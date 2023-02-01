@@ -21,10 +21,14 @@ The Migration or Importation of such Persons as any of the States now existing s
 `
 
 const doct_discovery = `
+Inter Caetera - Pope Alexander VI, 1493
+
 Wherefore, as becomes Catholic kings and princes, after earnest consideration of all matters, especially of the rise and spread of the Catholic faith, as was the fashion of your ancestors, kings of renowned memory, you have purposed with the favor of divine clemency to bring under your sway the said mainlands and islands with their residents and inhabitants and to bring them to the Catholic faith. Hence, heartily commending in the Lord this your holy and praiseworthy purpose, and desirous that it be duly accomplished, and that the name of our Savior be carried into those regions, we exhort you very earnestly in the Lord and by your reception of holy baptism, whereby you are bound to our apostolic commands, and by the bowels of the mercy of our Lord Jesus Christ, enjoy strictly, that inasmuch as with eager zeal for the true faith you design to equip and despatch this expedition, you purpose also, as is your duty, to lead the peoples dwelling in those islands and countries to embrace the Christian religion; nor at any time let dangers or hardships deter you therefrom, with the stout hope and trust in your hearts that Almighty God will further your undertakings. And, in order that you may enter upon so great an undertaking with greater readiness and heartiness endowed with benefit of our apostolic favor, we, of our own accord, not at your instance nor the request of anyone else in your regard, but out of our own sole largess and certain knowledge and out of the fullness of our apostolic power, by the authority of Almighty God conferred upon us in blessed Peter and of the vicarship of Jesus Christ, which we hold on earth, do by tenor of these presents, should any of said islands have been found by your envoys and captains, give, grant, and assign to you and your heirs and successors, kings of Castile and Leon, forever, together with all their dominions, cities, camps, places, and villages, and all rights, jurisdictions, and appurtenances, all islands and mainlands found and to be found, discovered and to be discovered towards the west and south, by drawing and establishing a line from the Arctic pole, namely the north, to the Antarctic pole, namely the south, no matter whether the said mainlands and islands are found and to be found in the direction of India or towards any other quarter, the said line to be distant one hundred leagues towards the west and south from any of the islands commonly known as the Azores and Cape Verde. With this proviso however that none of the islands and mainlands, found and to be found, discovered and to be discovered, beyond that said line towards the west and south, be in the actual possession of any Christian king or prince up to the birthday of our Lord Jesus Christ just past from which the present year one thousand four hundred ninety-three begins. And we make, appoint, and depute you and your said heirs and successors lords of them with full and free power, authority, and jurisdiction of every kind; with this proviso however, that by this our gift, grant, and assignment no right acquired by any Christian prince, who may be in actual possesssion of said islands and mainlands prior to the said birthday of our Lord Jesus Christ, is hereby to be understood to be withdrawn or taking away. Moreover we command you in virtue of holy obedience that, employing all due diligence in the premises, as you also promise—nor do we doubt your compliance therein in accordance with your loyalty and royal greatness of spirit—you should appoint to the aforesaid mainlands and islands worthy, God-fearing, learned, skilled, and expeienced men, in order to instruct the aforesaid inhabitants and residents in the Catholic faith and train them in good morals. Furthermore, under penalty of excommunication "late sententie" to be incurred "ipso facto," should anyone thus contravene, we strictly forbid all persons of whatsoever rank, even imperial and royal, or of whatsoever estate, degree, order, or condition, to dare without your special permit or that of your aforesaid heirs and successors, to go for the purpose of trade or any other reason to the islands or mainlands, found and to be found, discovered and to be discovered, towards the west and south, by drawing and establishing a line from the Arctic pole to the Antarctic pole, no matter whether the mainlands and islands, found and to be found, lie in the direction of India or toward any other quarter whatsoever, the said line to be distant one hundred leagues towards the west and south, as is aforesaid, from any of the islands commonly known as the Azores and Cape Verde; apostolic constitutions and ordinances and other decrees whatsoever to the contrary notwithstanding. We trust in Him from whom empires and governments and all good things proceed, that, should you, with the Lord’s guidance, pursue this holy and praiseworthy undertaking, in a short while your hardships and endeavors will attain the most felicitious result, to the happiness and glory of all Christendom.
 `
 
 const the_421st = `-*-
+
+(Zapatista Maritime Delegation) SupGaleano, 2021
 
 The calendar? An early morning in April. Geography? The mountains of the Mexican Southeast. A sudden silence overtakes the crickets, the distant barking of dogs, and the echo of marimba music. Here, in the belly of the mountains, it sounds more like a whisper than a shout. If we weren’t where we are, you might think it was the murmur of the open ocean. But it’s not the sound of waves crashing against the coast, the beach, or the cliff edge marked by a sheer drop. No, it’s something more than that. And then… a long wail and a sudden, brief tremor.
 
@@ -65,12 +69,22 @@ const new_words = document.getElementById("newWords")
 const old_words = document.getElementById("oldWords")
 const new_syntax = document.getElementById("newSyntax")
 
-const rand_word = (all_words) => all_words[Math.floor(Math.random() * all_words.length)].toLowerCase()
+const rand_elt = (an_array) => an_array[Math.floor(Math.random() * an_array.length)]
+const rand_word = (all_words) => rand_elt(all_words).toLowerCase()
+
 function display_text(a_text, a_page=the_palimpsest) {
     a_page.innerText = a_text;
 }
-function random_sentence(the_nouns, the_verbs, the_adjectives) {
-    return rand_word(the_nouns) + " " + rand_word(the_verbs) + " " + rand_word(the_adjectives) + " " + rand_word(the_nouns)
+function random_sentence(from_nouns, from_verbs, from_adjectives, pattern = ["noun", "verb", "adjective", "noun"]) {
+    const rand_of_kind = a_kind => {
+        switch(a_kind.toLowerCase()) {
+            case "noun": return rand_word(from_nouns);
+            case "verb": return rand_word(from_verbs);
+            case "adjective": return rand_word(from_adjectives);
+            default: return "";
+        }
+    }
+    return pattern.reduce((t, cat) => t + " " + rand_of_kind(cat), "")
 }
 
 function display_lines(lines) {
@@ -109,6 +123,26 @@ function oldword(a_word){
     update_menu(old_words, the_nouns, 5, "oldword")
 }
 
+let new_proposal = new Array();
+const learnbtn = document.getElementById("learnSyntax");
+
+function addCat(a_cat){
+    new_proposal.push(a_cat);
+    learnbtn.innerText = "Learn: " + new_proposal.join(" ");
+}
+
+function resetSyntax(){
+    new_proposal = [];
+    learnbtn.innerText = "Learn: " + new_proposal.join(" ");
+}
+
+function learnSyntax(){
+    if(!the_syntax.includes(new_proposal)){
+        the_syntax.push(new_proposal)
+    }
+    resetSyntax()
+}
+
 let doct_nouns = nlp(doct_discovery).nouns().normalize().toSingular().json().map((w)=>w["text"])
 let doct_verbs = nlp(doct_discovery).verbs().normalize().toPresentTense().json().map((w)=>w["text"])
 let doct_adjectives = nlp(doct_discovery).adjectives().normalize().json().map((w)=>w["text"])     
@@ -116,6 +150,7 @@ let the_421_nouns = nlp(the_421st).nouns().toSingular().normalize().json().map((
 let the_421_verbs = nlp(the_421st).verbs().toPresentTense().normalize().json().map((w)=>w["text"])
 let the_421_adjectives = nlp(the_421st).adjectives().normalize().json().map((w)=>w["text"])
 
+let the_syntax = [["noun", "verb", "adjective", "noun"]]
 let UPDATE_INTERVAL = 3000
 let NUM_LINES = 24
 let the_nouns = doct_nouns;
@@ -126,7 +161,7 @@ let current_lines = [...Array(NUM_LINES).keys()].map(_ => random_sentence(the_no
 
 let sent_progression = window.setInterval(function(){
     current_lines.shift()
-    current_lines.push(random_sentence(doct_nouns, doct_verbs, doct_adjectives))
+    current_lines.push(random_sentence(doct_nouns, doct_verbs, doct_adjectives, rand_elt(the_syntax)))
     display_lines(current_lines)
 }, UPDATE_INTERVAL)
 
