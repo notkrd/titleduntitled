@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prefigurative Operations</title>
+    <link rel="stylesheet" href="prefigurativeoperations.css">
+</head>
+<body>
+    <h1 class="title">Prefigurative Operations</h1>
+    <label for="cars">Select Canon / Counter-text Paring:</label>
+
+    <select name="cars" id="cars">
+      <option value="discovery">The Papal Bull "Inter Caetera," 1493 / Zapatista 421st Squadrun, 2021</option>
+      <option value="reconstruction"> US Supreme Court Rulings on the Slaughterhouse Cases, 1873 / Black Reconstruction in America, 1930</option>
+      <option value="uluru">Constitution of Australia / Uluru Statement From the Heart</option>
+      <option value="landback"> The Indian Act / Decolonizing Climate Policy in Canada</option>
+    </select> 
+    <div class="interventions">
+        <button id="learn" class="intervention">Learn Phrase</button>
+        <div id="newWords" class="dropdown-content">
+            <a href="#" id="newword1">New 1</a>
+            <a href="#" id="newword2">New 2</a>
+            <a href="#" id="newword3">New 3</a>
+        </div>
+    </div>
+    <div class="interventions">
+        <button id="forget" class="intervention">Forget Phrase</button>
+        <div id="oldWords" class="dropdown-content">
+            <a href="#" id="oldword1">Old 1</a>
+            <a href="#" id="oldword2">Old 2</a>
+            <a href="#" id="oldword3">Old 3</a>
+        </div>
+        <button id="newSyntax" class="intervention">New Syntax</button>
+    </div>
+    <p class="apologia">NOTE: These texts are not ones I understand. The author has earned no relationship with the counter-texts, but hopes nonetheless to be a vector for a few spores of their meanings and forms, not mine. Due to the hegemonic dynamics of algorithmic language processing, all texts are considered only in their English translation. The other side of this coin is the greater subtlety, evasions, and obscurities from surveillance possible in languages that the Large Language Models and other Natural Language Processors aren't yet trained on (Spanish, French, or Portuguese cannot really be considered safe in this way).</p>
+    <div class="palimpsest">
+        <div class="text">
+            <p id="composition"></p>
+        </div>
+        <div class="text">
+            <p id="canon"></p>
+        </div>
+        <div class="text">
+            <p id="counter"></p>
+        </div>
+    </div>
+    <script src="compromise.js"></script>
+    <script src="prefigurativeoperations.js"></script>
+</body>
+</html>
