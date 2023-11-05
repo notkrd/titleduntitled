@@ -5,3 +5,13 @@ cache
 cache/*
 .vscode
 .vscode/*
+backup.sql
+acme.json
+backup.sql
+carrythatload/hypertext_facade/.well-known/
+carrythatload/hypertext_facade/facades/prefigurativeoperations/LICENSE
+data/
+init-letsencrypt.sh
+init-letsencrypt.sh~
+mongoose/
+traefik.toml

@@ -8,43 +8,49 @@
 </head>
 <body>
     <h1 class="title">Prefigurative Operations</h1>
-    <div>
-        <label for="pairings">Select Canon / Counter-text Paring:</label>
-    
-        <select name="pairings" id="pairings">
-          <option value="discovery">The Papal Bull "Inter Caetera" / Zapatista 421st Squadrun </option>
-          <option value="reconstruction"> US Supreme Court Rulings on the Slaughterhouse Cases / Are Prisons Obsolete? </option>
-          <option value="uluru">Constitution of Australia / Uluru Statement From the Heart</option>
-          <option value="climatecanada"> Articles of Agreement of the International Monetary Fund / Black Marxism: the Making of the Black Radical Tradition</option>
-          <option value="climatecanada"> Export Development Canada Mandate / Decolonizing Climate Policy in Canada</option>
-        </select> </div>
-    <div class="interventions">
-        <button id="learn" class="intervention">Learn Phrase</button>
-        <div id="newWords" class="dropdown-content">
-            <a href="#" id="newword1">New 1</a>
-            <a href="#" id="newword2">New 2</a>
-            <a href="#" id="newword3">New 3</a>
+    <h3 id="textNames"></h3>
+    <h5 id="nextText"></h3>
+
+    <p class="apologia" id="instructions">INSTRUCTIONS: Hover over the above menus to pick words from the inherited text to forget, new phrases from the counter text to learn, or create a grammatical pattern to add to the language of the generator by making a sequence of kinds of words and clicking "LEARN" to add it.</p>
+    <div class="menubar">
+        <div class="interventions">
+            <button id="learn" class="intervention">Learn Phrase</button>
+            <div id="newWords" class="dropdown-content">
+                <a href="#" id="newword1">New 1</a>
+                <a href="#" id="newword2">New 2</a>
+                <a href="#" id="newword3">New 3</a>
+            </div>
+        </div>
+        <div class="interventions">
+            <button id="forget" class="intervention">Discard Phrase</button>
+            <div id="oldWords" class="dropdown-content">
+                <a href="#" id="oldword1">Old 1</a>
+                <a href="#" id="oldword2">Old 2</a>
+                <a href="#" id="oldword3">Old 3</a>
+            </div>
+        </div>
+        <div class="interventions">
+            <button id="newSyntax" class="intervention">New Syntax</button>
+            <div id="newSyntax" class="dropdown-content">
+                <a href="javascript:addCat('noun')" id="addNoun">Add Noun</a>
+                <a href="javascript:addCat('verb')" id="addVerb">Add Verb</a>
+                <a href="javascript:addCat('adjective')" id="addAdjective">Add Adjective</a>
+                <a href="javascript:learnSyntax()" id="learnSyntax">LEARN: </a>
+                <a href="javascript:resetSyntax()" id="resetSyntax">RESET</a>
+            </div>
         </div>
     </div>
-    <div class="interventions">
-        <button id="forget" class="intervention">Forget Phrase</button>
-        <div id="oldWords" class="dropdown-content">
-            <a href="#" id="oldword1">Old 1</a>
-            <a href="#" id="oldword2">Old 2</a>
-            <a href="#" id="oldword3">Old 3</a>
-        </div>
+    <button type="button" class="collapsible">Content Note and Piece Description [Open/Collapse]</button>
+    <div class="content">
+    <p class="apologia">These texts may mention bodily harm, racialized and anti-Indigenous violence, gendered and sexual violence, enslavement, and imprisonment. Prefigurative Operations invites readers to dismantle and refigure texts within the adversarial constraints of a colonial racial capitalist discourse, using critical counter-texts. What words and what syntax can show potential liberatory roads. The designer only hopes to be a vector for a few spores of the counter-texts' meanings and forms, not mine to fully know. Due to the hegemonic dynamics of algorithmic language processing, all texts are considered only in their English translation (the other side of this coin being, for now, some greater possibilites of subtlety and evasion in non-hegemonic languages).</p>
     </div>
-    <div class="interventions">
-        <button id="newSyntax" class="intervention">New Syntax</button>
-        <div id="newSyntax" class="dropdown-content">
-            <a href="javascript:addCat('noun')" id="addNoun">Add Noun</a>
-            <a href="javascript:addCat('verb')" id="addVerb">Add Verb</a>
-            <a href="javascript:addCat('adjective')" id="addAdjective">Add Adjective</a>
-            <a href="javascript:learnSyntax()" id="learnSyntax">Learn: </a>
-            <a href="javascript:resetSyntax()" id="resetSyntax">Reset</a>
-        </div>
+    <button type="button" class="collapsible">On These Texts [Open/Collapse]</button>
+    <div class="content">
+    <p class="apologia" id="onTexts"></p>
     </div>
-    <p class="apologia">NOTE: These texts are not ones I understand. The author has earned no relationship with the counter-texts, but hopes nonetheless to be a vector for a few spores of their meanings and forms, not mine. Due to the hegemonic dynamics of algorithmic language processing, all texts are considered only in their English translation. The other side of this coin is the greater subtlety, evasions, and obscurities from surveillance possible in languages that the Large Language Models and other Natural Language Processors aren't yet trained on (Spanish, French, or Portuguese cannot really be considered safe in this way).</p>
+    <label for ="pairings">Select Text Pair: </label>
+    <select name="pairings" id="pairings">
+    </select>
     <div class="palimpsest">
         <div class="text">
             <p id="composition"></p>

@@ -23,3 +23,7 @@ resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 
 enablePlugins(JavaAppPackaging)
 enablePlugins(DockerPlugin)
+
+javaOptions in Universal ++= Seq(
+  "-Dpidfile.path=/dev/null"
+)

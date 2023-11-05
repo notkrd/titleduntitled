@@ -7,16 +7,16 @@ services:
       - 5000
     container_name: thefarawaysummerevenings
 
-  roomwithmontague:
-    build: './roomwithmontague'
-    restart: always
-    expose:
-      - 9000
-      - 5000
-    container_name: roomwithmontague
-    volumes:
-      - room-ivy-cache:/root/.ivy2
-      - room-sbt-cache:/root/.sbt
+#  roomwithmontague:
+#    build: './roomwithmontague'
+#    restart: always
+#    expose:
+#      - 9000
+#      - 5000
+#    container_name: roomwithmontague
+#    volumes:
+#      - room-ivy-cache:/root/.ivy2
+#      - room-sbt-cache:/root/.sbt
 
   # homofauxin:
   #   build: './homofauxin'
